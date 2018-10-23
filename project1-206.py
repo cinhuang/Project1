@@ -55,7 +55,7 @@ def getData(file):
 	return theList
 
 
-def mySort(data,col):
+def mySort(data,col):  ### Change this to use Lambda !!!!
 # Sort based on key/column
 #Input: list of dictionaries and col (key) to sort on
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
@@ -156,16 +156,46 @@ def mySortPrint(a,col,fileName):
 #Input: list of dictionaries, col (key) to sort by and output file name
 #Output: No return value, but the file is written
 
-	pass
+	outfile  = open(fileName, 'a')
+
+	sortedList = sorted(a, key = lambda k: k[col])
+
+	for i in sortedList:
+		first = i["First"]
+		last = i["Last"]
+		email = i["Email"]
+		outputString = first + "," + last + "," + email + "\n"
+		outfile.write(outputString)
+
 
 def findAge(a):
-# def findAge(a):
 # Input: list of dictionaries
 # Output: Return the average age of the students and round that age to the nearest
 # integer.  You will need to work with the DOB and the current date to find the current
 # age in years.
 
-	pass
+	listOfAges = 0
+	listOfYears = []
+	dobList = []
+
+	for i in a:
+		#extracts all the dobs from the list
+		dobList.append(i["DOB"])
+
+
+	for i in dobList:
+		year = i[4:].rstrip("/")
+
+		if year[0] == "/":
+			finalYears = year [1:].rstrip("/")
+			listOfYears.append(finalYears)
+
+		else:
+			listOfYears.append(year)
+
+	today = date.today()
+
+	
 
 
 ################################################################
