@@ -12,6 +12,8 @@ def getData(file):
 	
 	infile = open(file, 'r')
 	line = infile.readline()
+
+	dictionary = {}
 	theList = []
 	row1 = line.split(",")
 
@@ -21,26 +23,25 @@ def getData(file):
 	gradeClass = row1[3]
 	dob = row1[4]
 
+
 	line = infile.readline()
 	
 	while line:
+		dictionary[first] = (line.split(",")[0])
+		dictionary[last] = (line.split(",")[1])
+		dictionary[email] = (line.split(",")[2])
+		dictionary[gradeClass] = (line.split(",")[3])
+		dictionary[dob] = (line.split(",")[4])
 
-
-
-
-	print(first)
-	print(last)
-	print(email)
-	print(gradeClass)
-	print(dob)
-
-	#while line:
+		theList.extend(dictionary)
 		
-		#line = infile.readline()
-	
 
+		line = infile.readline()
+
+	infile.close()
 
 	#return myList
+	return theList
 
 
 
