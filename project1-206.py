@@ -21,24 +21,35 @@ def getData(file):
 	last = row1[1]
 	email = row1[2]
 	gradeClass = row1[3]
-	dob = row1[4]
+	dob = row1[4].split("\n")[0]
 
 
 	line = infile.readline()
-	
-	while line:
-		dictionary[first] = (line.split(",")[0])
-		dictionary[last] = (line.split(",")[1])
-		dictionary[email] = (line.split(",")[2])
-		dictionary[gradeClass] = (line.split(",")[3])
-		dictionary[dob] = (line.split(",")[4])
 
-		theList.extend(dictionary)
+	while line:
+	
+		info = line.split(",")
+		firstName = info[0]
+		lastName = info[1]
+		emailAddress = info[2]
+		grade = info[3]
+		birthday = info[4].split("\n")[0]
+
+
+		dictionary[first] = firstName
+		dictionary[last] = lastName
+		dictionary[email] = emailAddress
+		dictionary[gradeClass] = grade
+		dictionary[dob] = birthday
+
+		theList.append(dictionary)
 		
 
 		line = infile.readline()
 
 	infile.close()
+
+	print(theList)
 
 	#return myList
 	return theList
