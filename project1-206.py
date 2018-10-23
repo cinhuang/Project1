@@ -13,7 +13,7 @@ def getData(file):
 	infile = open(file, 'r')
 	line = infile.readline()
 
-	dictionary = {}
+	
 	theList = []
 	row1 = line.split(",")
 
@@ -27,6 +27,7 @@ def getData(file):
 	line = infile.readline()
 
 	while line:
+		dictionary = {}
 	
 		info = line.split(",")
 		firstName = info[0]
@@ -48,8 +49,6 @@ def getData(file):
 		line = infile.readline()
 
 	infile.close()
-
-	print(theList)
 
 	#return myList
 	return theList
