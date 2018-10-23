@@ -17,6 +17,7 @@ def getData(file):
 	theList = []
 	row1 = line.split(",")
 
+	# Create the keys 
 	first = row1[0]
 	last = row1[1]
 	email = row1[2]
@@ -54,14 +55,43 @@ def getData(file):
 	return theList
 
 
-
 def mySort(data,col):
 # Sort based on key/column
 #Input: list of dictionaries and col (key) to sort on
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
+	
+	sortedList = []
+	sortedList2 = []
+	dictionary = {}
+	first = ""
+	last = ""
+	firstLast = ""
 
-	pass
+	# Creates a list of values based on the key
+	for i in data:
+		sortedList.append(i.get(col))
 
+
+	# creates a list of the sorted values 
+	for i in sortedList:
+		sortedList.sort()
+
+	value = sortedList[0]
+
+	firstLast = first + last
+
+	
+
+	for i in data:
+		if value in i.values():
+			dictionary = i
+
+		first = dictionary.get("First")
+		last = dictionary.get("Last")
+
+	firstLast = first + " " + last
+		
+	return firstLast
 
 def classSizes(data):
 # Create a histogram
