@@ -61,7 +61,6 @@ def mySort(data,col):
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
 	
 	sortedList = []
-	sortedList2 = []
 	dictionary = {}
 	first = ""
 	last = ""
@@ -77,11 +76,9 @@ def mySort(data,col):
 		sortedList.sort()
 
 	value = sortedList[0]
-
 	firstLast = first + last
 
 	
-
 	for i in data:
 		if value in i.values():
 			dictionary = i
@@ -93,6 +90,7 @@ def mySort(data,col):
 		
 	return firstLast
 
+
 def classSizes(data):
 # Create a histogram
 # Input: list of dictionaries
@@ -100,15 +98,43 @@ def classSizes(data):
 # descending order
 # [('Senior', 26), ('Junior', 25), ('Freshman', 21), ('Sophomore', 18)]
 
-	pass
+	sortedList = []
+	for i in data:
+		sortedList.append(i.get('Class'))
 
+	freshmanCount = 0
+	sophomoreCount = 0
+	juniorCount = 0
+	seniorCount = 0
+
+	# Count how many students in each class 
+	for i in sortedList:
+		if i == 'Freshman':
+			freshmanCount += 1
+		elif i == 'Sophomore':
+			sophomoreCount += 1
+		elif i == 'Junior':
+			juniorCount += 1
+		else:
+			seniorCount += 1
+ 
+	a = ["Freshman", "Sophomore", "Junior", "Senior"]
+	b = [freshmanCount, sophomoreCount, juniorCount, seniorCount]
+	c = list(zip(a, b))
+	c.sort(key=lambda x: x[1], reverse = True)
+	
+	return c
 
 def findMonth(a):
-# Find the most common birth month form this data
+# Find the most common birth month from this data
 # Input: list of dictionaries
 # Output: Return the month (1-12) that had the most births in the data
 
+
 	pass
+
+
+	
 
 def mySortPrint(a,col,fileName):
 #Similar to mySort, but instead of returning single
