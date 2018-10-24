@@ -55,40 +55,20 @@ def getData(file):
 	return theList
 
 
-def mySort(data,col):  ### Change this to use Lambda !!!!
+def mySort(data,col): 
 # Sort based on key/column
 #Input: list of dictionaries and col (key) to sort on
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
 	
 	sortedList = []
-	dictionary = {}
-	first = ""
-	last = ""
-	firstLast = ""
+	sortedList = sorted(data, key = lambda val: val[col])
 
-	# Creates a list of values based on the key
-	for i in data:
-		sortedList.append(i.get(col))
+	firstLine = sortedList[0]
 
-
-	# creates a list of the sorted values 
-	for i in sortedList:
-		sortedList.sort()
-
-	value = sortedList[0]
-	firstLast = first + last
-
-	
-	for i in data:
-		if value in i.values():
-			dictionary = i
-
-		first = dictionary.get("First")
-		last = dictionary.get("Last")
-
-	firstLast = first + " " + last
+	firstName = firstLine['First']
+	lastName = firstLine['Last']
 		
-	return firstLast
+	return firstName + " " + lastName
 
 
 def classSizes(data):
@@ -174,30 +154,20 @@ def findAge(a):
 # integer.  You will need to work with the DOB and the current date to find the current
 # age in years.
 
-	listOfAges = 0
-	listOfYears = []
-	dobList = []
+	listOfAges = []
 
 	for i in a:
 		#extracts all the dobs from the list
-		dobList.append(i["DOB"])
+		birthdays = i['DOB'].split('/')
+		birthYear = birthdays[2]
+		age = 2018 - int(birthYear)
 
+		listOfAges.append(age)
 
-	for i in dobList:
-		year = i[4:].rstrip("/")
+	average = sum(listOfAges) / len(listOfAges)
 
-		if year[0] == "/":
-			finalYears = year [1:].rstrip("/")
-			listOfYears.append(finalYears)
-
-		else:
-			listOfYears.append(year)
-
-	today = date.today()
-
+	return round(average)
 	
-
-
 ################################################################
 ## DO NOT MODIFY ANY CODE BELOW THIS
 ################################################################
